@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class VFXSpawner : MonoBehaviour
+public class VFXSpawner : Spawner
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private static VFXSpawner instance;
+    public static VFXSpawner Instance => instance;
 
-    // Update is called once per frame
-    void Update()
+    protected override void LoadComponentInAwakeBefore()
     {
-        
+        base.LoadComponentInAwakeBefore();
+        VFXSpawner.instance = this;
     }
 }

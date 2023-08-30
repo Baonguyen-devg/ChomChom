@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SFXSpawner : MonoBehaviour
+public class SFXSpawner : Spawner
 {
-    // Start is called before the first frame update
-    void Start()
+    private static SFXSpawner instance;
+    public static SFXSpawner Instance => instance;
+
+    protected override void LoadComponentInAwakeBefore()
     {
-        
+        base.LoadComponentInAwakeBefore();
+        SFXSpawner.instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void PlaySound(string soundName)
     {
-        
+        Transform obj = this.GetObjectByName(soundName);
+        if (obj == null) return;
+
+        Transform objSpawn = this.GetPoolObject(obj);
+        objSpawn.gameObject.SetActive(true);
+        objSpawn.SetParent(this.holder);
+        objSpawn.GetComponent<AudioSource>().Play();
     }
 }

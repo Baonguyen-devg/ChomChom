@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyImpact : MonoBehaviour
+public abstract class EnemyImpact : Impact
 {
-    // Start is called before the first frame update
-    void Start()
+    private const string NAME_LAYER_PLAYER = "Player";
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.layer != LayerMask.NameToLayer(NAME_LAYER_PLAYER)) return;
+        this.Affect(collision.transform);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    protected abstract void Affect(Transform objectAffect);
 }

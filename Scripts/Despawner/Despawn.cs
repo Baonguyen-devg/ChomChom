@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Despawn : MonoBehaviour
+public abstract class Despawner : AutoMonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void Update()
     {
-        
+        if (!this.CanDespawn()) return;
+        this.DespawnObject();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public virtual void DespawnObject() { /* For override */ }
+
+    protected abstract bool CanDespawn();
 }

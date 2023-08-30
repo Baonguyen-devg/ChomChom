@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : Spawner
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private static EnemySpawner instance;
+    public static EnemySpawner Instance => instance;
 
-    // Update is called once per frame
-    void Update()
+    protected override void LoadComponentInAwakeBefore()
     {
-        
+        base.LoadComponentInAwakeBefore();
+        EnemySpawner.instance = this;
     }
 }
+

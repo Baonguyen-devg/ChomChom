@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InputController : MonoBehaviour
+public partial class InputController : AutoMonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static InputController instance;
+    public static InputController Instance => instance;
+
+    protected override void LoadComponentInAwakeBefore()
     {
-        
+        base.LoadComponentInAwakeBefore();
+        InputController.instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public virtual Vector3 GetMousePosition() =>
+        Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+    public virtual bool GetkeyEscape() =>
+        Input.GetKey(KeyCode.Escape);
 }

@@ -1,18 +1,28 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public partial class PlayerController : AutoMonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    /*Begin predicatedload of components*/
+    [SerializeField] private List<Action> predicateLoad;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private Transform model;
+    public Transform Model => this.model;
+
+    [SerializeField] private PlayerMovement movement;
+    public PlayerMovement Movement => this.movement;
+    /*End predicatedload of components*/
+
+    protected override void LoadComponent()
     {
-        
+        predicateLoad = new List<Action>
+        {
+            () => this.model = transform.Find("Model"),
+            () => this.movement = transform.Find("Movement")?.GetComponent<PlayerMovement>()
+        };
+
+        foreach (var predicate in predicateLoad)
+            predicate?.Invoke();
     }
 }
