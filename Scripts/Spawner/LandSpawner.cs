@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LandSpawner : MonoBehaviour
+public class LandSpawner : Spawner
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private static LandSpawner instance;
+    public static LandSpawner Instance => instance;
 
-    // Update is called once per frame
-    void Update()
+    protected override void LoadComponentInAwakeBefore()
     {
-        
+        base.LoadComponentInAwakeBefore();
+        LandSpawner.instance = this;
     }
 }

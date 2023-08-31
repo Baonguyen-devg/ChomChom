@@ -14,6 +14,7 @@ public partial class InputController : AutoMonoBehaviour
     public virtual Vector3 GetMousePosition() =>
         Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-    public virtual bool GetkeyEscape() =>
-        Input.GetKey(KeyCode.Escape);
+    public virtual bool GetkeyEscape() => Input.GetKey(KeyCode.Escape);
+
+    public virtual bool GetKeySpace() => Input.GetKey(KeyCode.Space);
 }

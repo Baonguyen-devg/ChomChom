@@ -13,7 +13,6 @@ public class ParallaxMovement : Movement, IObserver
     {
         var gameControllerSubject = (subject as GameController);
         this.speed = this.speed * gameControllerSubject.SpeedGame;
-        Debug.Log("SPEED: " + this.speed);
     }
 
     private void RegisterSubject(ISubject subject) =>
