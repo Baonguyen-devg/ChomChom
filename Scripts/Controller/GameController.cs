@@ -1,18 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class GameController : MonoBehaviour
+public partial class GameController : AutoMonoBehaviour, ISubject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private const float DEFAULT_SPEED_GAME = 1f;
+    private const float DEFAULT_MAX_SPEED_GAME = 5f;
 
-    // Update is called once per frame
-    void Update()
+    private const float DEFAULT_RATE_SPEED_GAME = 0.1f;
+    private const float DEFAULT_RATE_TIME_INCREASE = 20f;
+
+    private static GameController instance;
+    public static GameController Instance => instance;
+
+    [SerializeField] private float speedGame = DEFAULT_SPEED_GAME;
+    public float SpeedGame => this.speedGame;
+
+    [SerializeField] private float rateSpeedGame = DEFAULT_RATE_SPEED_GAME;
+    [SerializeField] private float countDown = DEFAULT_RATE_TIME_INCREASE;
+
+    private List<IObserver> observers = new List<IObserver>();
+
+    private event EventHandler CountDownEventHandler;
+
+    protected override void LoadComponentInAwakeBefore()
     {
-        
+        base.LoadComponentInAwakeBefore();
+        this.CountDownEventHandler += this.IncreaseSpeedGame;
+        GameController.instance = this;
     }
 }
