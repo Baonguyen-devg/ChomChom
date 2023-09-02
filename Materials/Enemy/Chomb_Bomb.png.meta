@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 66597e5a160171c48a805a6c9f0962a6
+guid: c3848eeba9a032b4b855b0acfbad5f44
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -128,175 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chomp_idle_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cf946c041384bb3429bc2ceacf0dc413
-      internalID: 1730768435
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chomp_idle_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62504e6f50fec384e82bc53f6faf67da
-      internalID: -2059416549
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chomp_idle_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db3d633f28c45214b817725c1283fbbd
-      internalID: -91095579
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chomp_idle_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38696c838787b344584f56495707e4f1
-      internalID: -751824981
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chomp_idle_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 99f66a20b8583bd4594fbc213d4ce172
-      internalID: 903901396
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chomp_idle_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 428a0473a7efb04419a4a94cb71fff8a
-      internalID: -766095520
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chomp_idle_6
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d1f404417d8ddff4ca7f6a800c5bfd06
-      internalID: 2071220594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chomp_idle_7
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a16ca50ea61bbf846b8b3dc670248b54
-      internalID: 1784339857
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chomp_idle_8
+      name: Chomb_Bomb_0
       rect:
         serializedVersion: 2
         x: 0
@@ -310,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cef6f5d09d516de4ab1644dfa5ffc16d
-      internalID: 2079313349
+      spriteID: 625130cd1bec112408896d16a630a46b
+      internalID: -1712873379
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chomp_idle_9
+      name: Chomb_Bomb_1
       rect:
         serializedVersion: 2
         x: 32
@@ -331,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52737e964f270cc498b722ebf28713c4
-      internalID: 81398167
+      spriteID: e00375c8f211e8d4199458f38e225a9e
+      internalID: -1717763540
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chomp_idle_10
+      name: Chomb_Bomb_2
       rect:
         serializedVersion: 2
         x: 64
@@ -352,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 469ca543570b8e84caa46556c03b11bc
-      internalID: -753269695
+      spriteID: bf0cd15da0b66784ea66c4540b5f10bb
+      internalID: -1713858269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chomp_idle_11
+      name: Chomb_Bomb_3
       rect:
         serializedVersion: 2
         x: 96
@@ -373,8 +205,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a4f4df4bf492dd40b71518510de1afc
-      internalID: 1012497836
+      spriteID: 7224dd4c7e73bdd449891dc635aa1693
+      internalID: 1927062091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chomb_Bomb_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04c6d83b05a890e4cb2d9c0f9e5de3e4
+      internalID: -585632875
       vertices: []
       indices: 
       edges: []
@@ -390,18 +243,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      chomp_idle_2: -91095579
-      chomp_idle_3: -751824981
-      chomp_idle_11: 1012497836
-      chomp_idle_1: -2059416549
-      chomp_idle_8: 2079313349
-      chomp_idle_0: 1730768435
-      chomp_idle_7: 1784339857
-      chomp_idle_4: 903901396
-      chomp_idle_10: -753269695
-      chomp_idle_9: 81398167
-      chomp_idle_6: 2071220594
-      chomp_idle_5: -766095520
+      Chomb_Bomb_4: -585632875
+      Chomb_Bomb_1: -1717763540
+      Chomb_Bomb_3: 1927062091
+      Chomb_Bomb_0: -1712873379
+      Chomb_Bomb_2: -1713858269
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
