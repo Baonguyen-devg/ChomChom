@@ -8,6 +8,9 @@ public partial class InputController : AutoMonoBehaviour, ISubject
 
     private List<IObserver> observers = new List<IObserver>();
 
+    [SerializeField] private Vector3 keySpace = Vector3.zero;
+    public Vector3 KeySpace => this.keySpace;
+
     protected override void LoadComponentInAwakeBefore()
     {
         base.LoadComponentInAwakeBefore();
@@ -16,18 +19,24 @@ public partial class InputController : AutoMonoBehaviour, ISubject
 
     private void Update()
     {
-        this.GetKeySpace();
+        this.CheckKeySpace();
+        if (keySpace != Vector3.zero) this.Notify();
     }
+
+    private void CheckKeySpace() =>
+        keySpace = new Vector3(this.GetButtonJump() ? 1 : 0, this.GetButtonJumpDown() ? 1 : 0,
+                               this.GetButtonJumpUp() ? 1 : 0);
 
     public virtual Vector3 GetMousePosition() =>
         Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
     public virtual bool GetkeyEscape() => Input.GetKey(KeyCode.Escape);
 
-    public virtual void GetKeySpace()
-    {
-        if (Input.GetKey(KeyCode.Space)) this.Notify();
-    }
+    public virtual bool GetButtonJump() => Input.GetButton("Jump");
+
+    public virtual bool GetButtonJumpDown() => Input.GetButtonDown("Jump");
+
+    public virtual bool GetButtonJumpUp() => Input.GetButtonUp("Jump");
 
     public void Attach(IObserver observer) => this.observers.Add(observer);
 

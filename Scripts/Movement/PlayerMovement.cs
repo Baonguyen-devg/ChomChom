@@ -2,22 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : AutoMonoBehaviour, IObserver
+public partial class PlayerMovement : AutoMonoBehaviour, IObserver
 {
     private const float DEFAULT_JUMP_FORCE = 2f;
-    private const float DEFAULT_RADIUS = 3f;
+    private const float DEFAULT_MAX_JUMP_FORCE = 10f;
+    private const float DEFAULT_RADIUS = 0.2f;
+    private const float DEFAULT_COUNT_DOWN = 0.7f;
 
     [SerializeField] private Vector2 directionJump = Vector2.up;
     [SerializeField] private float jumpForce = DEFAULT_JUMP_FORCE;
     [SerializeField] private float radius = DEFAULT_RADIUS;
 
     [SerializeField] private bool isGrounded = false;
+    [SerializeField] private bool isJump = false;
+    [SerializeField] private float countDown = DEFAULT_COUNT_DOWN;
 
     private event System.EventHandler JumpEventHandler;
    
     /*Begin predicatedload of components*/
     [SerializeField] private List<System.Action> predicateLoad;
 
+    [SerializeField] private Animator animator;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Rigidbody2D rigid2D;
     /*End predicatedload of components*/
@@ -28,6 +33,7 @@ public class PlayerMovement : AutoMonoBehaviour, IObserver
         this.predicateLoad = new List<System.Action>
         {
             () => this.rigid2D = transform.parent.GetComponent<Rigidbody2D>(),
+            () => this.animator = transform.parent.Find("Model")?.GetComponent<Animator>()
         };
         foreach (var predicate in this.predicateLoad)
             predicate?.Invoke();
@@ -40,19 +46,4 @@ public class PlayerMovement : AutoMonoBehaviour, IObserver
     }
 
     protected override void Start() => this.RegisterEventInput();
-
-    private void RegisterEventInput() => 
-        InputController.Instance.Attach(this);
-
-    public void UpdateObserver(ISubject subject)
-    {
-        this.isGrounded = Physics2D.OverlapCircle(transform.position,
-                                     this.radius, this.layerMask);
-
-        if (this.isGrounded) this.JumpEventHandler?.Invoke(null, null);
-    }
-
-    private void Jump(object sender, System.EventArgs e) =>
-        this.rigid2D.velocity = this.directionJump * this.jumpForce;
-
 }   
