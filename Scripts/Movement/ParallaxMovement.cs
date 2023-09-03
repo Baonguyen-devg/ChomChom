@@ -15,8 +15,11 @@ public class ParallaxMovement : Movement, IObserver
         this.speed = this.speed * gameControllerSubject.SpeedGame;
     }
 
-    private void RegisterSubject(ISubject subject) =>
+    private void RegisterSubject(ISubject subject)
+    {
         (subject as GameController).Attach(this);
+        this.UpdateObserver(subject);
+    }
 
     protected override void Move() =>
         transform.parent.position = Vector3.Lerp(transform.parent.position,

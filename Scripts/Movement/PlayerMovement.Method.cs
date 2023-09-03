@@ -15,6 +15,8 @@ public partial class PlayerMovement : AutoMonoBehaviour, IObserver
         if (this.isGrounded && dataKeySpace.y == 1)
         {
             this.animator.SetBool("Jump", true);
+            SFXSpawner.Instance.PlaySound("Jump_Audio");
+
             (this.countDown, this.isJump) = (DEFAULT_COUNT_DOWN, true);
             this.JumpEventHandler?.Invoke(null, null);
         }

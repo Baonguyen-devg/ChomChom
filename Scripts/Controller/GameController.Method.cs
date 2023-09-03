@@ -18,6 +18,8 @@ public partial class GameController : AutoMonoBehaviour, ISubject
     public virtual void IncreaseCoin(int number)
     {
         this.numberCoint = this.numberCoint + number;
+        UIController.Instance.ChangeCoinNumberText(this.numberCoint.ToString());
+        SFXSpawner.Instance.PlaySound("Coin_Audio");
     }
 
     private void IncreaseSpeedGame(object sender, EventArgs e)
