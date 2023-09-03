@@ -15,7 +15,7 @@ public class Parallax : AutoMonoBehaviour
     private event EventHandler MoveEventHandler;
 
     /*Begin predicatedload of components*/
-    [SerializeField] private List<Action> predicateLoad;
+    [SerializeField] private List<Action> loadComponentActions;
 
     [SerializeField] private Transform cam;
     [SerializeField] private float len = default;
@@ -26,14 +26,14 @@ public class Parallax : AutoMonoBehaviour
     {
         base.LoadComponent();
         this.MoveEventHandler += this.MoveToPos;
-        this.predicateLoad = new List<Action>
+        this.loadComponentActions = new List<Action>
         {
             () => this.cam = GameObject.Find("Main_Camera")?.transform,
             () => this.len = GetComponent<SpriteRenderer>().bounds.size.x,
             () => this.posCamera = this.cam.localPosition.x
         };
-        foreach (var predicate in this.predicateLoad)
-            predicate?.Invoke();
+        foreach (var action in this.loadComponentActions)
+            action?.Invoke();
     }
 
     private void Update()

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2849303681519061330}
   - component: {fileID: 2849303681519061333}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Movement
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 2849303682675513517}
   - component: {fileID: 2849303682675513519}
   - component: {fileID: 2849303682675513518}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 2849303682733457910}
   - component: {fileID: 2849303682733457913}
   - component: {fileID: 2849303682733457912}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 651933458, guid: e68b9e8639447784e915491a78163d2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

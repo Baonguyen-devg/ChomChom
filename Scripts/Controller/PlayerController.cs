@@ -5,7 +5,7 @@ using UnityEngine;
 public partial class PlayerController : AutoMonoBehaviour
 {
     /*Begin predicatedload of components*/
-    [SerializeField] private List<Action> predicateLoad;
+    [SerializeField] private List<Action> loadComponentActions;
 
     [SerializeField] private Transform model;
     public Transform Model => this.model;
@@ -16,13 +16,13 @@ public partial class PlayerController : AutoMonoBehaviour
 
     protected override void LoadComponent()
     {
-        predicateLoad = new List<Action>
+        loadComponentActions = new List<Action>
         {
             () => this.model = transform.Find("Model"),
             () => this.movement = transform.Find("Movement")?.GetComponent<PlayerMovement>()
         };
 
-        foreach (var predicate in predicateLoad)
-            predicate?.Invoke();
+        foreach (var action in loadComponentActions)
+            action?.Invoke();
     }
 }

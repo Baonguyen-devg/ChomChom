@@ -20,6 +20,9 @@ public partial class GameController : AutoMonoBehaviour, ISubject
     [SerializeField] private float rateSpeedGame = DEFAULT_RATE_SPEED_GAME;
     [SerializeField] private float countDown = DEFAULT_RATE_TIME_INCREASE;
 
+    [SerializeField] private int numberCoint = default;
+    public int NumberCoint => this.numberCoint;
+
     private List<IObserver> observers = new List<IObserver>();
 
     private event EventHandler CountDownEventHandler;

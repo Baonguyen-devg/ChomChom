@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMovement : Movement
 {
     /*Begin predicatedload of components*/
-    [SerializeField] private List<Action> predicateLoad;
+    [SerializeField] private List<Action> loadComponentActions;
 
     [SerializeField] private Transform player;
     /*End predicatedload of components*/
@@ -13,12 +13,12 @@ public class CameraMovement : Movement
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        this.predicateLoad = new List<Action>
+        this.loadComponentActions = new List<Action>
         {
             () => this.player = GameObject.Find("Player")?.transform,
         };
-        foreach (var predicate in this.predicateLoad)
-            predicate?.Invoke();
+        foreach (var action in this.loadComponentActions)
+            action?.Invoke();
     }
 
     protected override void Move()

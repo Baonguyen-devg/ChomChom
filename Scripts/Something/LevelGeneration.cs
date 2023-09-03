@@ -14,7 +14,7 @@ public class LevelGeneration : AutoMonoBehaviour
     private event System.EventHandler CountDownEventHandler;
 
     /*Begin predicatedload of components*/
-    [SerializeField] private List<System.Action> predicateLoad;
+    [SerializeField] private List<System.Action> loadComponentActions;
 
     [SerializeField] private Transform player;
     /*End predicatedload of components*/
@@ -22,13 +22,13 @@ public class LevelGeneration : AutoMonoBehaviour
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        this.predicateLoad = new List<System.Action>
+        this.loadComponentActions = new List<System.Action>
         {
             () => this.player = GameObject.Find("Player")?.transform,
             () => this.endPointLand = GameObject.Find("Land_First").transform.Find("End_Point_Land")
         };
-        foreach (var predicate in this.predicateLoad)
-            predicate?.Invoke();
+        foreach (var action in this.loadComponentActions)
+            action?.Invoke();
     }
 
     protected override void LoadComponentInAwakeBefore()
@@ -45,7 +45,6 @@ public class LevelGeneration : AutoMonoBehaviour
 
     private void Update()
     {
-        Debug.Log(Vector3.Distance(this.player.position, this.endPointLand.position));
         if (Vector3.Distance(this.player.position, this.endPointLand.position) > this.distanceSpawn) return;
         this.CountDownEventHandler?.Invoke(null, null);
     }

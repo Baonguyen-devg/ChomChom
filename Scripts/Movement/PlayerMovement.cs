@@ -20,7 +20,7 @@ public partial class PlayerMovement : AutoMonoBehaviour, IObserver
     private event System.EventHandler JumpEventHandler;
    
     /*Begin predicatedload of components*/
-    [SerializeField] private List<System.Action> predicateLoad;
+    [SerializeField] private List<System.Action> loadComponentActions;
 
     [SerializeField] private Animator animator;
     [SerializeField] private LayerMask layerMask;
@@ -30,13 +30,13 @@ public partial class PlayerMovement : AutoMonoBehaviour, IObserver
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        this.predicateLoad = new List<System.Action>
+        this.loadComponentActions = new List<System.Action>
         {
             () => this.rigid2D = transform.parent.GetComponent<Rigidbody2D>(),
             () => this.animator = transform.parent.Find("Model")?.GetComponent<Animator>()
         };
-        foreach (var predicate in this.predicateLoad)
-            predicate?.Invoke();
+        foreach (var action in this.loadComponentActions)
+            action?.Invoke();
     }
 
     protected override void LoadComponentInAwakeBefore()

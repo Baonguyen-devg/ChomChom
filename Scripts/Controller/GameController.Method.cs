@@ -15,6 +15,11 @@ public partial class GameController : AutoMonoBehaviour, ISubject
         }
     }
 
+    public virtual void IncreaseCoin(int number)
+    {
+        this.numberCoint = this.numberCoint + number;
+    }
+
     private void IncreaseSpeedGame(object sender, EventArgs e)
     {
         this.speedGame = Mathf.Min(DEFAULT_MAX_SPEED_GAME, this.speedGame + this.rateSpeedGame);
