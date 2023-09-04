@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public partial class UIController : AutoMonoBehaviour
 {
@@ -41,4 +42,18 @@ public partial class UIController : AutoMonoBehaviour
     public virtual void OnGameLosePanel() => this.gameLosePanel.SetActive(true);
 
     public virtual void OnPauseGamePanel() => this.pauseGamePanel.SetActive(true);
+
+    public virtual void ContinueGame() => Time.timeScale = 1;
+
+    public virtual void BackMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public virtual void PlayAgain()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
