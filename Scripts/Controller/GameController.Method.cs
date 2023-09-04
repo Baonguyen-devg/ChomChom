@@ -28,6 +28,18 @@ public partial class GameController : AutoMonoBehaviour, ISubject
         this.Notify();
     }
 
+    public virtual void GameLose()
+    {
+        Time.timeScale = 0;
+        UIController.Instance.OnGameLosePanel();
+    }
+
+    public virtual void PauseGame()
+    {
+        Time.timeScale = 0;
+        UIController.Instance.OnPauseGamePanel();
+    }
+
     public void Attach(IObserver observer) => this.observers.Add(observer);
 
     public void Detach(IObserver observer) => this.observers.Remove(observer);

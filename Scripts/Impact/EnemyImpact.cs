@@ -40,12 +40,14 @@ public class EnemyImpact : Impact
     protected void Affect()
     {
         this.animator.SetTrigger("Bomb");
+        SFXSpawner.Instance.PlaySound("Smoke_Bomb_Audio");
         StartCoroutine(this.DespawnEnemy());
     }
 
     private IEnumerator DespawnEnemy()
     {
         yield return new WaitForSeconds(0.5f);
+        GameController.Instance.GameLose();
         EnemySpawner.Instance.Despawn(transform);
     }
 }

@@ -11,6 +11,8 @@ public partial class UIController : AutoMonoBehaviour
     /*Begin predicatedload of components*/
     [SerializeField] private List<System.Action> loadComponentActions;
 
+    [SerializeField] private GameObject gameLosePanel;
+    [SerializeField] private GameObject pauseGamePanel;
     [SerializeField] private Text coinNumberText;
     /*End predicatedload of components*/
 
@@ -19,7 +21,9 @@ public partial class UIController : AutoMonoBehaviour
         base.LoadComponent();
         this.loadComponentActions = new List<System.Action>
         {
-            () => this.coinNumberText = transform.Find("Game_Panel").Find("Coin").GetComponentInChildren<Text>()
+            () => this.coinNumberText = transform.Find("Game_Panel").Find("Coin").GetComponentInChildren<Text>(),
+            () => this.gameLosePanel = transform.Find("Game_Lose_Panel").gameObject,
+            () => this.pauseGamePanel = transform.Find("Pause_Game_Panel").gameObject
         };
         foreach (var action in this.loadComponentActions)
             action?.Invoke();
@@ -33,4 +37,8 @@ public partial class UIController : AutoMonoBehaviour
 
     public virtual void ChangeCoinNumberText(string number) =>
         this.coinNumberText.text = number;
+
+    public virtual void OnGameLosePanel() => this.gameLosePanel.SetActive(true);
+
+    public virtual void OnPauseGamePanel() => this.pauseGamePanel.SetActive(true);
 }

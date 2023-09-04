@@ -19,6 +19,7 @@ public partial class InputController : AutoMonoBehaviour, ISubject
 
     private void Update()
     {
+        if (this.GetkeyEscape()) GameController.Instance.PauseGame();
         this.CheckKeySpace();
         if (keySpace != Vector3.zero) this.Notify();
     }

@@ -2,15 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class PlayerMovement : AutoMonoBehaviour, IObserver
+public partial class PlayerMovement : Movement, IObserver
 {
+    protected override void Move()
+    {
+        this.isGrounded = Physics2D.OverlapCircle(transform.position, this.radius, this.layerMask);
+
+        if (!this.isGrounded) return;
+        if (Vector3.Distance(transform.parent.position, this.firstPosition.position) <= 1) return;
+        transform.parent.position = Vector3.Lerp(transform.parent.position, 
+                                                this.firstPosition.position, this.speed);
+    }
+
     private void RegisterEventInput() =>
         InputController.Instance.Attach(this);
 
     public void UpdateObserver(ISubject subject)
     {
         Vector3 dataKeySpace = (subject as InputController).KeySpace;
-        this.isGrounded = Physics2D.OverlapCircle(transform.position, this.radius, this.layerMask);
 
         if (this.isGrounded && dataKeySpace.y == 1)
         {
