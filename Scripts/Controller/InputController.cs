@@ -8,8 +8,9 @@ public partial class InputController : AutoMonoBehaviour, ISubject
 
     private List<IObserver> observers = new List<IObserver>();
 
-    [SerializeField] private Vector3 keySpace = Vector3.zero;
-    public Vector3 KeySpace => this.keySpace;
+    [Header("[ Button Space] : x = normal, y = down, z = up"), Space(5)]
+    [SerializeField] private Vector3 buttonSpace = Vector3.zero;
+    public Vector3 ButtonSpace => this.buttonSpace;
 
     protected override void LoadComponentInAwakeBefore()
     {
@@ -21,11 +22,11 @@ public partial class InputController : AutoMonoBehaviour, ISubject
     {
         if (this.GetkeyEscape()) GameController.Instance.PauseGame();
         this.CheckKeySpace();
-        if (keySpace != Vector3.zero) this.Notify();
+        if (buttonSpace != Vector3.zero) this.Notify();
     }
 
     private void CheckKeySpace() =>
-        keySpace = new Vector3(this.GetButtonJump() ? 1 : 0, this.GetButtonJumpDown() ? 1 : 0,
+        buttonSpace = new Vector3(this.GetButtonJump() ? 1 : 0, this.GetButtonJumpDown() ? 1 : 0,
                                this.GetButtonJumpUp() ? 1 : 0);
 
     public virtual Vector3 GetMousePosition() =>

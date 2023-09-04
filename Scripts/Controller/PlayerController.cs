@@ -16,13 +16,13 @@ public partial class PlayerController : AutoMonoBehaviour
 
     protected override void LoadComponent()
     {
-        loadComponentActions = new List<Action>
+        this.loadComponentActions = new List<Action>
         {
             () => this.model = transform.Find("Model"),
             () => this.movement = transform.Find("Movement")?.GetComponent<PlayerMovement>()
         };
 
-        foreach (var action in loadComponentActions)
+        foreach (var action in this.loadComponentActions)
             action?.Invoke();
     }
 }

@@ -1,42 +1,35 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Spawner : AutoMonoBehaviour
 {
-    [SerializeField] protected List<Transform> listPrefab;
     [SerializeField] protected List<Transform> poolObjects;
+
+    //Begin predicatedload of components
+    [SerializeField] protected List<System.Action> loadComponentActions;
+
+    [SerializeField] protected List<Transform> listPrefab = new List<Transform>();
     [SerializeField] protected Transform holder;
+    //End predicatedload of components
 
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        this.LoadPrefab();
-        this.LoadHolder();
-    }
-
-    protected virtual void LoadPrefab()
-    {
-        if (this.listPrefab.Count != 0) return;
-        Transform prefabObj = transform.Find("Prefabs");
-        foreach (Transform prefab in prefabObj)
-            this.listPrefab.Add(prefab);
-    }
-
-    protected virtual void LoadHolder()
-    {
-        if (this.holder != null) return;
-        this.holder = transform.Find("Holder");
-        Debug.Log(transform.name + ": Load Holder", gameObject);
+        if (this.listPrefab.Count != 0) this.listPrefab.Clear();
+        this.loadComponentActions = new List<System.Action>
+        {
+            () => this.holder = transform.Find("Holder"),
+            () => this.listPrefab.AddRange(transform.Find("Prefabs").Cast<Transform>())
+        };
+        foreach (var action in this.loadComponentActions)
+            action?.Invoke();
     }
 
     public virtual Transform Spawn(string nameObject, Vector3 postion, Quaternion rotation)
     {
         Transform obj = this.GetObjectByName(nameObject);
-        if (obj == null)
-        {
-            Debug.LogError(nameObject + ": Can find object.");
-            return null;
-        }
+        if (obj == null) return null;
 
         Transform objSpawn = this.GetPoolObject(obj);
         objSpawn.SetPositionAndRotation(postion, rotation);
@@ -48,9 +41,8 @@ public class Spawner : AutoMonoBehaviour
 
     protected virtual Transform GetObjectByName(string nameObject)
     {
-        foreach (Transform obj in this.listPrefab)
-            if (obj.name == nameObject) return obj;
-        return null;
+        var prefabs = this.listPrefab.Where(p => nameObject.Equals(p.name)).ToList();
+        return (prefabs.Any()) ? prefabs[0] : null;
     }
 
     public virtual void Despawn(Transform obj)
@@ -73,9 +65,6 @@ public class Spawner : AutoMonoBehaviour
         return newObject;
     }
 
-    public virtual string GetRandomPrefab()
-    {
-        int keyObject = Random.Range(0, this.listPrefab.Count);
-        return this.listPrefab[keyObject].name;
-    }
+    public virtual string GetRandomPrefab() =>
+        this.listPrefab[Random.Range(0, this.listPrefab.Count)].name;
 }

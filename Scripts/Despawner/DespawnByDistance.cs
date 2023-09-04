@@ -18,13 +18,13 @@ public class DespawnByDistance : Despawner
 
     protected override void LoadComponent()
     {
-        loadComponentActions = new List<System.Action>
+        this.loadComponentActions = new List<System.Action>
         {
             () => this.pointEndLand = transform.parent.Find("End_Point_Land"),
             () => this.pointDespawnLand = GameObject.Find("Main_Camera").transform.Find("Point_Despawn_Land")
         };
 
-        foreach (var action in loadComponentActions)
+        foreach (var action in this.loadComponentActions)
             action?.Invoke();
     }
 

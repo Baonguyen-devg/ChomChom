@@ -19,7 +19,7 @@ public partial class PlayerMovement : Movement, IObserver
 
     public void UpdateObserver(ISubject subject)
     {
-        Vector3 dataKeySpace = (subject as InputController).KeySpace;
+        Vector3 dataKeySpace = (subject as InputController).ButtonSpace;
 
         if (this.isGrounded && dataKeySpace.y == 1)
         {

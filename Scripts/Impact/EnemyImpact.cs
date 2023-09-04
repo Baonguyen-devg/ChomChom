@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyImpact : Impact
 {
     private const float DEFAULT_RADIUS = 0.5f;
-    private const string NAME_LAYER_PLAYER = "Player";
 
+    [Header("[ Impact Follow LayerMask ]"), Space(5)]
     [SerializeField] private bool? isImpact = null;
     [SerializeField] private float radius = DEFAULT_RADIUS;
     [SerializeField] private LayerMask layerMask;
@@ -15,7 +15,6 @@ public class EnemyImpact : Impact
     [SerializeField] private List<System.Action> loadComponentActions;
 
     [SerializeField] private Animator animator;
-    [SerializeField] private Transform player;
     /*End predicatedload of components*/
 
     protected override void LoadComponent()
@@ -23,7 +22,6 @@ public class EnemyImpact : Impact
         base.LoadComponent();
         this.loadComponentActions = new List<System.Action>
         {
-            () => this.player = GameObject.Find("Player")?.transform,
             () => this.animator = transform.Find("Model")?.GetComponent<Animator>()
         };
         foreach (var action in this.loadComponentActions)

@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Impact : AutoMonoBehaviour
 {
+    [Header("[ Components For Impact ]"), Space(5)]
     [SerializeField] protected Rigidbody2D rigid2D;
     protected virtual void LoadRigidbody2D() =>
         this.rigid2D = GetComponent<Rigidbody2D>();
