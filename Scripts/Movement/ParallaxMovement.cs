@@ -6,8 +6,11 @@ public class ParallaxMovement : Movement, IObserver
 {
     [SerializeField] private Vector3 direction = Vector3.left;
 
-    protected override void Start() =>
+    protected override void Start()
+    {
+        if (GameController.Instance == null) return;
         this.RegisterSubject(GameController.Instance);
+    }
 
     public void UpdateObserver(ISubject subject)
     {
