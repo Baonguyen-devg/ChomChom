@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,6 @@ public partial class GameController : AutoMonoBehaviour, ISubject
 {
     private const float DEFAULT_SPEED_GAME = 1f;
     private const float DEFAULT_MAX_SPEED_GAME = 5f;
-
     private const float DEFAULT_RATE_SPEED_GAME = 0.1f;
     private const float DEFAULT_RATE_TIME_INCREASE = 20f;
 
@@ -26,9 +24,13 @@ public partial class GameController : AutoMonoBehaviour, ISubject
     public int NumberCoint => this.numberCoint;
 
     private List<IObserver> observers = new List<IObserver>();
-
     private event EventHandler CountDownEventHandler;
 
+    /// <summary>
+    ///   <para>Load game controller singleton</para>
+    ///   <para>add functions increase speed game into event handler</para>
+    /// </summary>
+    /// 
     protected override void LoadComponentInAwakeBefore()
     {
         base.LoadComponentInAwakeBefore();

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public partial class PlayerMovement : Movement, IObserver
@@ -10,7 +8,7 @@ public partial class PlayerMovement : Movement, IObserver
 
         if (!this.isGrounded) return;
         if (Vector3.Distance(transform.parent.position, this.firstPosition.position) <= 1) return;
-        transform.parent.position = Vector3.Lerp(transform.parent.position, 
+        transform.parent.position = Vector3.Lerp(transform.parent.position,
                                                 this.firstPosition.position, this.speed);
     }
 
@@ -29,14 +27,14 @@ public partial class PlayerMovement : Movement, IObserver
             (this.countDown, this.isJump) = (DEFAULT_COUNT_DOWN, true);
             this.JumpEventHandler?.Invoke(null, null);
         }
-        
+
         if (dataKeySpace.x == 1 && this.isJump)
         {
             this.jumpForce = Mathf.Min(DEFAULT_MAX_JUMP_FORCE, this.jumpForce + 0.01f);
             this.countDown = this.countDown - Time.deltaTime;
             if (this.countDown > 0) this.JumpEventHandler?.Invoke(null, null);
         }
-        
+
         if (dataKeySpace.z == 1)
             (this.isJump, this.jumpForce) = (false, DEFAULT_JUMP_FORCE);
     }

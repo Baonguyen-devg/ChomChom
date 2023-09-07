@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +5,6 @@ public class DespawnByDistance : Despawner
 {
     private const float DEFAULT_DISTANCE_DESPAWN = 11f;
     [SerializeField] private float distanceDespawn = DEFAULT_DISTANCE_DESPAWN;
-
     [SerializeField] private float distance;
 
     /*Begin predicatedload of components*/
@@ -28,9 +26,11 @@ public class DespawnByDistance : Despawner
             action?.Invoke();
     }
 
-    public override void DespawnObject() =>
-        LandSpawner.Instance.Despawn(transform.parent);
-
+    /// <summary>
+    ///   <para>This class create for despawn land prefabs by distance </para>
+    ///   <para>That mean if distance between point end land and a point despawn &lt; distance request (distanceDespawn) =&gt; despawn</para>
+    /// </summary>
+    public override void DespawnObject() => LandSpawner.Instance.Despawn(transform.parent);
     protected override bool CanDespawn()
     {
         this.distance = Vector3.Distance(this.pointEndLand.position, this.pointDespawnLand.position);

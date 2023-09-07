@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +18,7 @@ public partial class PlayerMovement : Movement, IObserver
     [SerializeField] private float countDown = DEFAULT_COUNT_DOWN;
 
     private event System.EventHandler JumpEventHandler;
-   
+
     /*Begin predicatedload of components*/
     [SerializeField] private List<System.Action> loadComponentActions;
 
@@ -50,4 +49,4 @@ public partial class PlayerMovement : Movement, IObserver
     }
 
     protected override void Start() => this.RegisterEventInput();
-}   
+}

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public partial class GameController : AutoMonoBehaviour, ISubject
@@ -40,8 +38,14 @@ public partial class GameController : AutoMonoBehaviour, ISubject
         UIController.Instance.OnPauseGamePanel();
     }
 
+    /// <summary>
+    ///   <para>Attach function use for register subject of gamecontroller (Add a observer into list)</para>
+    ///   <para>Detach function use for cancel register subject of gamecontroller (Remove a observer in list)</para>
+    ///   <para>Notify function use for remind all observers when event happen </para>
+    /// </summary>
+    /// <param name="observer">The observer.</param>
+    /// 
     public void Attach(IObserver observer) => this.observers.Add(observer);
-
     public void Detach(IObserver observer) => this.observers.Remove(observer);
 
     public void Notify()

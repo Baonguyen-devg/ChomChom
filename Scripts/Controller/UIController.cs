@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public partial class UIController : AutoMonoBehaviour
 {
@@ -26,23 +25,23 @@ public partial class UIController : AutoMonoBehaviour
             () => this.gameLosePanel = transform.Find("Game_Lose_Panel").gameObject,
             () => this.pauseGamePanel = transform.Find("Pause_Game_Panel").gameObject
         };
-        foreach (var action in this.loadComponentActions)
+        foreach (var action in this.loadComponentActions) 
             action?.Invoke();
     }
 
-    protected override void LoadComponentInAwakeBefore()
-    {
-        base.LoadComponentInAwakeBefore();
+    protected override void LoadComponentInAwakeBefore() => 
         UIController.instance = this;
-    }
 
     public virtual void ChangeCoinNumberText(string number) =>
         this.coinNumberText.text = number;
 
+    /// <summary>
+    ///   <para>OnGameLosePanel to enable game lose panel</para>
+    ///   <para>OnGamePausePanel to enable game pause panel</para>
+    ///   <para>Continue have only a mission that make time.timescale = 1</para>
+    /// </summary>
     public virtual void OnGameLosePanel() => this.gameLosePanel.SetActive(true);
-
     public virtual void OnPauseGamePanel() => this.pauseGamePanel.SetActive(true);
-
     public virtual void ContinueGame() => Time.timeScale = 1;
 
     public virtual void BackMenu()

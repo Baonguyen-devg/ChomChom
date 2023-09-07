@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class EnemySpawner : Spawner
 {
     private static EnemySpawner instance;

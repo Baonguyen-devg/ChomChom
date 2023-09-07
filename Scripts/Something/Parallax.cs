@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Parallax : AutoMonoBehaviour
 {
-    internal class DataEventHandler: EventArgs
+    internal class DataEventHandler : EventArgs
     {
         [SerializeField] private Vector3 pos = default;
         public Vector3 Pos => this.pos;
@@ -32,8 +31,7 @@ public class Parallax : AutoMonoBehaviour
             () => this.len = GetComponent<SpriteRenderer>().bounds.size.x,
             () => this.posCamera = this.cam.localPosition.x
         };
-        foreach (var action in this.loadComponentActions)
-            action?.Invoke();
+        foreach (var action in this.loadComponentActions) action?.Invoke();
     }
 
     private void Update()
