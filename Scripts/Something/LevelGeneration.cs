@@ -4,7 +4,7 @@ using UnityEngine;
 public class LevelGeneration : AutoMonoBehaviour
 {
     private const float DEFAULT_DISTANCE_SPAWN = 50f;
-    private const int DEFAULT_NUMBER_FIRST_LAND = 3;
+    private const int DEFAULT_NUMBER_FIRST_LAND = 1;
 
     [SerializeField] private float distanceSpawn = DEFAULT_DISTANCE_SPAWN;
     [SerializeField] private int numberFirstLand = DEFAULT_NUMBER_FIRST_LAND;

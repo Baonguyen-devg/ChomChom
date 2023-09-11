@@ -7,6 +7,5 @@ public abstract class Despawner : AutoMonoBehaviour
     }
 
     public virtual void DespawnObject() { /* For override */ }
-
     protected abstract bool CanDespawn();
 }

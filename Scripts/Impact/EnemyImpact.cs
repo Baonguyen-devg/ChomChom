@@ -14,6 +14,7 @@ public class EnemyImpact : Impact
     /*Begin predicatedload of components*/
     [SerializeField] private List<System.Action> loadComponentActions;
 
+    [SerializeField] private PlayerController playerController;
     [SerializeField] private Animator animator;
     /*End predicatedload of components*/
 
@@ -22,7 +23,8 @@ public class EnemyImpact : Impact
         base.LoadComponent();
         this.loadComponentActions = new List<System.Action>
         {
-            () => this.animator = transform.Find("Model")?.GetComponent<Animator>()
+            () => this.animator = transform.Find("Model")?.GetComponent<Animator>(),
+            () => this.playerController = GameObject.Find("Player").GetComponent<PlayerController>()
         };
         foreach (var action in this.loadComponentActions)
             action?.Invoke();
@@ -39,13 +41,13 @@ public class EnemyImpact : Impact
     {
         this.animator.SetTrigger("Bomb");
         SFXSpawner.Instance.PlaySound("Smoke_Bomb_Audio");
+        this.playerController.Die();
         StartCoroutine(this.DespawnEnemy());
     }
 
     private IEnumerator DespawnEnemy()
     {
-        yield return new WaitForSeconds(0.5f);
-        GameController.Instance.GameLose();
+        yield return new WaitForSeconds(1f);
         EnemySpawner.Instance.Despawn(transform);
     }
 }

@@ -15,14 +15,15 @@ public partial class GameController : AutoMonoBehaviour, ISubject
 
     public virtual void IncreaseCoin(int number)
     {
-        this.numberCoint = this.numberCoint + number;
-        UIController.Instance.ChangeCoinNumberText(this.numberCoint.ToString());
+        this.numberCoin = this.numberCoin + number;
+        UIController.Instance.ChangeCoinNumberText(this.numberCoin.ToString());
         SFXSpawner.Instance.PlaySound("Coin_Audio");
     }
 
     private void IncreaseSpeedGame(object sender, EventArgs e)
     {
         this.speedGame = Mathf.Min(DEFAULT_MAX_SPEED_GAME, this.speedGame + this.rateSpeedGame);
+        if (this.speedGame == DEFAULT_MAX_SPEED_GAME) return;
         this.Notify();
     }
 
@@ -30,6 +31,8 @@ public partial class GameController : AutoMonoBehaviour, ISubject
     {
         Time.timeScale = 0;
         UIController.Instance.OnGameLosePanel();
+        SFXSpawner.Instance.PlaySound("Game_Lose_Audio");
+        SFXSpawner.Instance.StopBackGroundAudio();
     }
 
     public virtual void PauseGame()

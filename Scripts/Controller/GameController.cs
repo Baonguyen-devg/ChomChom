@@ -5,8 +5,8 @@ using UnityEngine;
 public partial class GameController : AutoMonoBehaviour, ISubject
 {
     private const float DEFAULT_SPEED_GAME = 1f;
-    private const float DEFAULT_MAX_SPEED_GAME = 5f;
-    private const float DEFAULT_RATE_SPEED_GAME = 0.1f;
+    private const float DEFAULT_MAX_SPEED_GAME = 1.36f;
+    private const float DEFAULT_RATE_SPEED_GAME = 0.03f;
     private const float DEFAULT_RATE_TIME_INCREASE = 20f;
 
     private static GameController instance;
@@ -20,8 +20,8 @@ public partial class GameController : AutoMonoBehaviour, ISubject
     [SerializeField] private float countDown = DEFAULT_RATE_TIME_INCREASE;
 
     [Header("[ Coin ]"), Space(5)]
-    [SerializeField] private int numberCoint = default;
-    public int NumberCoint => this.numberCoint;
+    [SerializeField] private int numberCoin = default;
+    public int NumberCoin => this.numberCoin;
 
     private List<IObserver> observers = new List<IObserver>();
     private event EventHandler CountDownEventHandler;
@@ -36,5 +36,8 @@ public partial class GameController : AutoMonoBehaviour, ISubject
         base.LoadComponentInAwakeBefore();
         this.CountDownEventHandler += this.IncreaseSpeedGame;
         GameController.instance = this;
+        Application.targetFrameRate = 60;
     }
+
+    protected override void Start() => SFXSpawner.Instance.PlayBackgroundAudio();
 }

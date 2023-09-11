@@ -3,7 +3,7 @@ using UnityEngine;
 
 public partial class PlayerMovement : Movement, IObserver
 {
-    private const float DEFAULT_JUMP_FORCE = 2f;
+    private const float DEFAULT_JUMP_FORCE = 4f;
     private const float DEFAULT_MAX_JUMP_FORCE = 10f;
     private const float DEFAULT_RADIUS = 0.2f;
     private const float DEFAULT_COUNT_DOWN = 0.7f;

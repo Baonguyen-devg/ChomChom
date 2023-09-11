@@ -1,13 +1,25 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Menu : AutoMonoBehaviour
 {
-    [SerializeField] private AudioSource clickAudio;
-    private void LoadClickAudio() =>
-        this.clickAudio = GameObject.Find("Button_Audio_Source")?.GetComponent<AudioSource>();
+    /*Begin predicatedload of components*/
+    [SerializeField] private List<System.Action> loadComponentActions;
 
-    protected override void LoadComponent() => this.LoadClickAudio();
+    [SerializeField] private AudioSource clickAudio;
+    /*End predicatedload of components*/
+
+    protected override void LoadComponent()
+    {
+        base.LoadComponent();
+        this.loadComponentActions = new List<System.Action>
+        {
+            () => this.clickAudio = GameObject.Find("Button_Audio_Source")?.GetComponent<AudioSource>(),
+        };
+        foreach (var action in this.loadComponentActions) 
+            action?.Invoke();
+    }
 
     public virtual void PlayGame()
     {

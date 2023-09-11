@@ -14,6 +14,7 @@ public partial class UIController : AutoMonoBehaviour
     [SerializeField] private GameObject gameLosePanel;
     [SerializeField] private GameObject pauseGamePanel;
     [SerializeField] private Text coinNumberText;
+    [SerializeField] private Text scoreCoinText;
     /*End predicatedload of components*/
 
     protected override void LoadComponent()
@@ -23,13 +24,14 @@ public partial class UIController : AutoMonoBehaviour
         {
             () => this.coinNumberText = transform.Find("Game_Panel").Find("Coin").GetComponentInChildren<Text>(),
             () => this.gameLosePanel = transform.Find("Game_Lose_Panel").gameObject,
-            () => this.pauseGamePanel = transform.Find("Pause_Game_Panel").gameObject
+            () => this.pauseGamePanel = transform.Find("Pause_Game_Panel").gameObject,
+            () => this.scoreCoinText = transform.Find("Game_Lose_Panel").Find("Score_Coin").GetComponent<Text>()
         };
-        foreach (var action in this.loadComponentActions) 
+        foreach (var action in this.loadComponentActions)
             action?.Invoke();
     }
 
-    protected override void LoadComponentInAwakeBefore() => 
+    protected override void LoadComponentInAwakeBefore() =>
         UIController.instance = this;
 
     public virtual void ChangeCoinNumberText(string number) =>
@@ -40,7 +42,11 @@ public partial class UIController : AutoMonoBehaviour
     ///   <para>OnGamePausePanel to enable game pause panel</para>
     ///   <para>Continue have only a mission that make time.timescale = 1</para>
     /// </summary>
-    public virtual void OnGameLosePanel() => this.gameLosePanel.SetActive(true);
+    public virtual void OnGameLosePanel() {
+        this.gameLosePanel.SetActive(true);
+        this.scoreCoinText.text = GameController.Instance.NumberCoin.ToString();
+    }
+
     public virtual void OnPauseGamePanel() => this.pauseGamePanel.SetActive(true);
     public virtual void ContinueGame() => Time.timeScale = 1;
 

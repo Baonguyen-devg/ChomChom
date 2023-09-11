@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Spawner : AutoMonoBehaviour
+public abstract class Spawner<T>: AutoMonoBehaviour
 {
     [SerializeField] protected List<Transform> poolObjects;
 
@@ -26,22 +26,23 @@ public class Spawner : AutoMonoBehaviour
             action?.Invoke();
     }
 
-    public virtual Transform Spawn(string nameObject, Vector3 postion, Quaternion rotation)
+    public virtual Transform Spawn(T typeObject, Vector3 pos, Quaternion rot)
     {
-        Transform obj = this.GetObjectByName(nameObject);
+        Transform obj = this.GetObjectByType(typeObject);
         if (obj == null) return null;
 
         Transform objSpawn = this.GetPoolObject(obj);
-        objSpawn.SetPositionAndRotation(postion, rotation);
+        objSpawn.SetPositionAndRotation(pos, rot);
 
         objSpawn.gameObject.SetActive(true);
         objSpawn.SetParent(this.holder);
         return objSpawn;
     }
 
-    protected virtual Transform GetObjectByName(string nameObject)
+    protected abstract bool CompareType(Transform p, T type);
+    protected virtual Transform GetObjectByType(T type)
     {
-        var prefabs = this.listPrefab.Where(p => nameObject.Equals(p.name)).ToList();
+        var prefabs = this.listPrefab.Where(p => this.CompareType(p, type)).ToList();
         return (prefabs.Any()) ? prefabs[0] : null;
     }
 

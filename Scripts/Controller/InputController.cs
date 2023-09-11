@@ -10,7 +10,7 @@ public partial class InputController : AutoMonoBehaviour, ISubject
     [Header("[ Button Space] : x = normal, y = down, z = up"), Space(5)]
     [SerializeField] private Vector3 buttonSpace = Vector3.zero;
     public Vector3 ButtonSpace => this.buttonSpace;
-
+     
     protected override void LoadComponentInAwakeBefore() => 
         InputController.instance = this;
 
@@ -20,6 +20,8 @@ public partial class InputController : AutoMonoBehaviour, ISubject
         this.CheckButtonSpace();
         if (this.buttonSpace != Vector3.zero) this.Notify();
     }
+
+    public virtual bool GetkeyEscape() => Input.GetKey(KeyCode.Escape);
 
     /// <summary>
     ///   <para>Check button space, display by a vector (x, y, z)</para>
@@ -32,8 +34,6 @@ public partial class InputController : AutoMonoBehaviour, ISubject
     /// <summary>Gets mouse's position.</summary>
     public virtual Vector3 GetMousePosition() =>
         Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-    public virtual bool GetkeyEscape() => Input.GetKey(KeyCode.Escape);
 
     /// <summary>Gets the button jump.</summary>
     public virtual bool GetButtonJump() => Input.GetButton("Jump");
